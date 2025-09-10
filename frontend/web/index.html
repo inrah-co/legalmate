@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      .form-container {
+        max-width: 400px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+      }
+      input,
+      textarea,
+      select,
+      button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      button {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Submit Information</h2>
+      <form id="infoForm">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          required
+        ></textarea>
+
+        <label for="dropdown">Select Option</label>
+        <select id="dropdown" name="type" required>
+          <option value="">--Choose an option--</option>
+          <option value="Constitution">Constitution</option>
+          <option value="Indian union law">Indian union law</option>
+          <option value="state law">state law</option>
+        </select>
+
+        <button type="submit">Submit</button>
+      </form>
+      <div id="result"></div>
+      <label for="toggleOptimized">Optimized Response</label>
+      <div style="display: flex; align-items: center; margin-top: 5px">
+        <input type="checkbox" id="toggleOptimized" value="true" />
+        <span id="toggleStatus" style="margin-left: 10px">Off</span>
+      </div>
+      <script>
+        const toggle = document.getElementById("toggleOptimized");
+        const status = document.getElementById("toggleStatus");
+
+        toggle.addEventListener("change", async function () {
+          const optimizedResponse = toggle.checked;
+          status.textContent = optimizedResponse ? "On" : "Off";
+          await fetch("http://localhost:3000/api/options/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ optimizedResponse }),
+          });
+        });
+      </script>
+    </div>
+    <script>
+      document
+        .getElementById("infoForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const title = document.getElementById("title").value;
+          const description = document.getElementById("description").value;
+          const type = document.getElementById("dropdown").value;
+
+          const response = await fetch("http://localhost:3000/api/data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, description, type }),
+          });
+
+          const resultDiv = document.getElementById("result");
+          if (response.ok) {
+            resultDiv.textContent = "Form submitted successfully!";
+            resultDiv.style.color = "green";
+          } else {
+            resultDiv.textContent = "Error submitting form.";
+            resultDiv.style.color = "red";
+          }
+        });
+    </script>
+  </body>
+</html>
