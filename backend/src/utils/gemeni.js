@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-async function geminieAI(content) {
+async function geminiAI(content) {
   const ai = new GoogleGenAI({
     apiKey: "AIzaSyDA_sVfamtImuKDtg1z1sM6pFpl8Fv8YJs",
   });
@@ -13,4 +13,4 @@ async function geminieAI(content) {
   return response.text;
 }
 
-export default geminieAI;
+export default geminiAI;

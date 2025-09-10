@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const loginRoutes = require("../.bin/login.js (route folder)");
+// const loginRoutes = require("../.bin/login.js (route folder)");
 const optionRoutes = require("./routes/options");
 const dataEntryRoutes = require("./routes/dataEntry");
 const userQueryRoutes = require("./routes/userQuery");
