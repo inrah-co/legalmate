@@ -1,6 +1,6 @@
-import { pipeline } from "@xenova/transformers";
-import chalk from "chalk";
-import geminieAI from "./geminie.js";
+const { pipeline } = require("@xenova/transformers");
+const chalk = require("chalk");
+const geminieAI = require("./gemeni.js");
 
 // Cosine similarity helper
 function cosineSimilarity(a, b) {
@@ -21,7 +21,7 @@ async function getEmbedding(embedder, text) {
   return Array.from(output.data); // Correct extraction
 }
 
-export class RAG {
+module.exports = class RAG {
   constructor(data) {
     this.data = data;
     this.embedder = null;
@@ -126,4 +126,4 @@ export class RAG {
 
     return { answer, output2 };
   }
-}
+};

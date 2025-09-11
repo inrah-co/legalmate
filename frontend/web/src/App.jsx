@@ -13,54 +13,42 @@
 // import Legalmate from './component\'/Legalmate'
 // import { sendMsgToOpenAI } from './openai'
 // import { useState } from 'react'
-import {BrowserRouter , Routes , Route} from 'react-router-dom'
-import Legalmate from './component\'/Legalmate'
-import Database from './component\'/Database'
-import DataEntry from './component\'/DataEntry'
-import DatabaseDetail from './component\'/DatabaseDetail'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Legalmate from "./component'/Legalmate";
+import Database from "./component'/Database";
+import DataEntry from "./component'/DataEntry";
+import DatabaseDetail from "./component'/DatabaseDetail";
 
 function App() {
+  //  const [toggle,setToggle] = useState(true)
 
- 
-//  const [toggle,setToggle] = useState(true)
+  //   async function sample (){
+  //     const data = await axios.get("http://localhost:3000/api/options")
+  //     setToggle(data.data[0].optimizedResponse)
+  //   //  console.log(data)
+  //   }
 
-
-//   async function sample (){
-//     const data = await axios.get("http://localhost:3000/api/options")
-//     setToggle(data.data[0].optimizedResponse)
-//   //  console.log(data)
-//   }
-
-//   useEffect(async () =>{
-//     sample()
-//   },[setToggle])
+  //   useEffect(async () =>{
+  //     sample()
+  //   },[setToggle])
 
   return (
     <>
-      <div className='App'>
+      <div className="App">
         <BrowserRouter>
-        <Routes>
-          <Route path='/'  element={  <Legalmate />  }/>
-          <Route path='/database' element={<Database />} />
-          <Route path='/dataentry' element={<DataEntry/>} />
-          <Route path='/detail'  element={<DatabaseDetail />}/>
-        </Routes>
-
+          <Routes>
+            <Route path="/" element={<Legalmate />} />
+            <Route path="/database" element={<Database />} />
+            <Route path="/dataentry" element={<DataEntry />} />
+            <Route path="/detail/:id" element={<DatabaseDetail />} />
+          </Routes>
         </BrowserRouter>
-       
-     
       </div>
-
     </>
-  )
+  );
 }
 
-export default App
-
-
-
-
-
+export default App;
 
 // onChange={ async ()=> {await fetch("http://localhost:3000/api/options/", {
 //             method: "POST",

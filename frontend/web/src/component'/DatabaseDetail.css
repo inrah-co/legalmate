@@ -1,0 +1,17 @@
+.detail_container {
+  margin: 30px 20px;
+  padding: 20px;
+  text-align: left;
+}
+.detail_container small {
+  font-size: 0.9rem;
+  color: gray;
+}
+.detail_container h1 {
+  font-size: 2.5rem;
+}
+
+.detail_container p {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
