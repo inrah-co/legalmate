@@ -1,0 +1,134 @@
+.database{
+    width: 100%;
+  
+}
+
+
+.database_container {
+    display: flex;
+    flex-direction: column;  
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 70%;
+}
+.database_container p{
+    color: rgb(175, 164, 164);
+}
+.database_inputContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+.search{
+    position: absolute;
+    left: 67%;
+    top: 20px;
+}
+
+
+input{
+    width: 40%;
+    border: 1px solid gray;
+    background: transparent;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+hr{
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.list{
+    display: flex;
+    justify-content: center;
+    color: gray;
+    gap: 20px;
+    margin-top: 20px;
+    
+}
+ul{
+    list-style: none;
+}
+ul:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+
+/* 
+.card_container{
+    width: 350px;
+    height: 200px;
+    border-radius: 10px 40px;
+    border: 1px solid gray;
+    background-color: transparent;
+
+} */
+ 
+/* .card_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: transparent;
+    margin-top: 10px;
+    width: 100%;
+    height: 250px;
+    gap: 10px;
+}
+
+.card{
+    flex-grow: 1;
+  flex-basis: 20%;
+  margin: 10px 10px;
+  border: 1px solid gray;
+  border-radius: 10px 40px;
+  padding: 10px;
+}
+.card_content{
+    padding-left: 10px;
+} */
+ .card_container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 20px;
+
+ }
+.card{
+    margin: 10px 10px;
+  border: 1px solid gray;
+  border-radius: 10px 40px;
+  padding: 10px;
+}
+.card_content h2{
+    font-size: small;
+    color: #fff;
+
+}
+
+.card_content p{
+    margin-top: 20px;
+    text-align: start;
+    color: gray;
+}
+
+@media (max-width:768px){
+    .card_container{
+        grid-template-columns: 1fr;
+    }
+    input{
+        width: 65%;
+    }
+    .search{
+        left: 75%;
+    }
+    .card_content p{
+        padding: 10px;
+        margin-top: 0;
+    }
+}
