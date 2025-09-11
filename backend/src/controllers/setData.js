@@ -1,4 +1,6 @@
-const { initEmbedder, textToVector } = require("../utils/vectorUtils");
+const Data = require("../models/data");
+const isDocExist = require("../utils/isDocExist");
+const { textToVector } = require("../utils/vectorUtils");
 
 module.exports = async (req, res) => {
   const { title, description, type } = req.body;
@@ -11,7 +13,23 @@ module.exports = async (req, res) => {
 
   try {
     const vector = await textToVector(`${title} ${description}`);
-    const Data = require("../models/data");
+
+    /// TODO: enable this to avoid duplicates
+    // const oldDoc = await isDocExist(vector, type);
+    // if (oldDoc.exists) {
+    //   return res.status(409).json({
+    //     message: "Document already exists.",
+    //     data: { title, description, type },
+    //     oldData: {
+    //       title: oldDoc.bestMatch.title || "",
+    //       description: oldDoc.bestMatch.description || "",
+    //       type: oldDoc.bestMatch.type || "",
+    //     },
+    //     score: oldDoc.bestScore,
+    //     oldRawData: oldDoc.bestMatch,
+    //   });
+    // }
+
     const newData = new Data({
       title,
       description,

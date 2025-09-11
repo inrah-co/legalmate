@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { documentTypes } = require("../constants");
 
 const dataSchema = new mongoose.Schema({
   title: {
@@ -15,7 +16,7 @@ const dataSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["Constitution", "Indian union law", "state law"],
+    enum: documentTypes,
     required: true,
   },
 });
