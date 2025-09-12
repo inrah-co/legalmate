@@ -13,6 +13,9 @@ import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import legalmateicon from "../assets/legalmate_icon2.png";
+import { FaDatabase } from "react-icons/fa";
+import { FaWpforms } from "react-icons/fa";
 
 const Legalmate = () => {
   const [checked, setChecked] = useState(true);
@@ -115,7 +118,7 @@ const Legalmate = () => {
       <div className="sidebar">
         <div className="upperside">
           <div className="upperSideTop">
-            <img className="logo" src={gptLogo} alt="" />{" "}
+            <img className="logo" src={legalmateicon} alt="" />{" "}
             <span className="brand">Legal Mate</span>
           </div>
           <button className="midBtn">
@@ -141,8 +144,8 @@ const Legalmate = () => {
             to={"/database"}
           >
             <div className="listItems">
-              <img src={home} alt="" className="listItemImg" />
-              Database
+            <FaDatabase size={25} style={{marginRight:"10px"}} /> <p>Data Base</p>
+             
             </div>
           </Link>
 
@@ -151,8 +154,8 @@ const Legalmate = () => {
             to={"/dataentry"}
           >
             <div className="listItems">
-              <img src={saved} alt="" className="listItemImg" />
-              Data Entry
+              
+             <FaWpforms size={25} style={{marginRight:"10px"}} /> <p>Data Entry</p>
             </div>
           </Link>
 
@@ -191,7 +194,7 @@ const Legalmate = () => {
                     <p className="txt voice">{item.req}</p>
                   </div>
                   <div className="chat bot">
-                    <img className="chatImg" src={gptImgLogo} alt="" />{" "}
+                    <img className="chatImg" src={legalmateicon} alt="" />{" "}
                     <p className="txt voice">
                       <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {item.res}
