@@ -16,12 +16,13 @@ import remarkGfm from "remark-gfm";
 import legalmateicon from "../assets/legalmate_icon2.png";
 import { FaDatabase } from "react-icons/fa";
 import { FaWpforms } from "react-icons/fa";
+import { API_URL } from "../constants";
 
 const Legalmate = () => {
   const [checked, setChecked] = useState(true);
   async function getOptimizeStatus() {
     try {
-      const response = await fetch("http://localhost:3000/api/options", {
+      const response = await fetch(`${API_URL}/options`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +39,7 @@ const Legalmate = () => {
   async function handleCheckboxChange() {
     try {
       console.log(checked);
-      const data = await fetch("http://localhost:3000/api/options/", {
+      const data = await fetch(`${API_URL}/options/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +67,12 @@ const Legalmate = () => {
     // },
   ]);
   const [input, setInput] = useState("");
+  const [thinking, setThinking] = useState(false);
   async function handleSendMessage() {
+    if (thinking) {
+      alert("Please wait for the current response to finish.");
+      return;
+    }
     if (input.trim() === "") return;
     const userMessage = input;
     setInput("");
@@ -75,13 +81,15 @@ const Legalmate = () => {
       { req: userMessage, res: "🤔 THINKING..." },
     ]);
     try {
-      const response = await fetch("http://localhost:3000/api/query/", {
+      setThinking(true);
+      const response = await fetch(`${API_URL}/query/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ query: userMessage }),
       });
+      console.log(response);
       if (response.status !== 200) {
         throw new Error("Non-200 response");
       }
@@ -102,6 +110,7 @@ const Legalmate = () => {
         newState[newState.length - 1].res = data.response;
         return newState;
       });
+      setThinking(false);
     } catch (error) {
       console.error("Error:", error);
       setState((prevState) => {
@@ -110,6 +119,7 @@ const Legalmate = () => {
           "Sorry, there was an error processing your request.";
         return newState;
       });
+      setThinking(false);
     }
   }
 
@@ -144,8 +154,8 @@ const Legalmate = () => {
             to={"/database"}
           >
             <div className="listItems">
-            <FaDatabase size={25} style={{marginRight:"10px"}} /> <p>Data Base</p>
-             
+              <FaDatabase size={25} style={{ marginRight: "10px" }} />{" "}
+              <p>Data Base</p>
             </div>
           </Link>
 
@@ -154,8 +164,8 @@ const Legalmate = () => {
             to={"/dataentry"}
           >
             <div className="listItems">
-              
-             <FaWpforms size={25} style={{marginRight:"10px"}} /> <p>Data Entry</p>
+              <FaWpforms size={25} style={{ marginRight: "10px" }} />{" "}
+              <p>Data Entry</p>
             </div>
           </Link>
 

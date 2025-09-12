@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PiSubtitlesLight } from "react-icons/pi";
 import "./DataEntry.css";
 import js from "@eslint/js";
+import { API_URL } from "../constants";
 
 const DataEntry = () => {
   const [data, setData] = useState([]);
@@ -15,7 +16,7 @@ const DataEntry = () => {
   async function submitData() {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/api/data/", {
+      const response = await fetch(`${API_URL}/data/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +39,7 @@ const DataEntry = () => {
   }
   async function fetchData() {
     setLoading(true);
-    const response = await fetch("http://localhost:3000/api/data/types");
+    const response = await fetch(`${API_URL}/data/types`);
     const jsonData = await response.json();
     setData(jsonData);
     setLoading(false);

@@ -16,17 +16,19 @@ app.use(
     origin: "*",
   })
 );
+const uri = "mongodb+srv://rahaman:rahaman29@cluster0.ahngmh4.mongodb.net";
 
 mongoose
-  .connect("mongodb://localhost:27017/yourdbname", {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connected to Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 const init = async () => {
   await initEmbedder();
+  console.log("Embedder initialized");
 };
 init().catch((err) => console.error("Initialization error:", err));
 // app.use("/api/login", loginRoutes);

@@ -4,12 +4,13 @@ import "./Database.css";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../constants";
 
 const Database = () => {
   const [data, setData] = useState([]);
 
   async function fetchData() {
-    const response = await axios.get("http://localhost:3000/api/data");
+    const response = await axios.get(`${API_URL}/data`);
     setData(response.data);
   }
 
