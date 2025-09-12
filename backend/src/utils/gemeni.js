@@ -1,11 +1,12 @@
 const { GoogleGenAI } = require("@google/genai");
+const { geminiToken } = require("../constants");
 
 module.exports = async function geminiAI(content) {
   try {
     console.log("Content sent to Gemini AI:", content);
 
     const ai = new GoogleGenAI({
-      apiKey: "AIzaSyDA_sVfamtImuKDtg1z1sM6pFpl8Fv8YJs",
+      apiKey: geminiToken,
     });
 
     const response = await ai.models.generateContent({
