@@ -16,7 +16,8 @@ app.use(
     origin: "*",
   })
 );
-const uri = "mongodb+srv://rahaman:rahaman29@cluster0.ahngmh4.mongodb.net";
+// const uri = "mongodb+srv://rahaman:rahaman29@cluster0.ahngmh4.mongodb.net";
+const uri = "mongodb://127.0.0.1:27017/legalmate";
 
 mongoose
   .connect(uri, {
